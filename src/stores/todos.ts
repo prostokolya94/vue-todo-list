@@ -2,9 +2,10 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
  export type Todo = {
+  userId:number;
   id: number;
   title: string;
-  isDone: boolean;
+  completed: boolean;
 }
 
 export const todosStores = defineStore('todos', () => {
@@ -14,7 +15,8 @@ export const todosStores = defineStore('todos', () => {
     todos.value.push({
       id: todos.value.length + 1,
       title: title,
-      isDone: false
+      userId:1,
+      completed: false
     })
   }
 
@@ -25,7 +27,7 @@ export const todosStores = defineStore('todos', () => {
   function changeTodoStatus(changingId: number) {
     const changingTodo = todos.value.find((el) => el.id === changingId)
     if (changingTodo) {
-      changingTodo.isDone = !changingTodo.isDone
+      changingTodo.completed = !changingTodo.completed
     }
   }
 
